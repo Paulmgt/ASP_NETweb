@@ -1,0 +1,97 @@
+﻿@model IEnumerable<AspCorePremeiereApp.Models.Voiture>
+
+<!-- un lien HREF vers  la saisie-->
+<h1 class="mb-3"> LISTE DES VOITURES </h1>
+
+<hr/>
+<p>
+    <a  class ="btn btn-primary" href="/test/saisie" > Nouveau</a>
+</p>
+
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th scope="col">Numéro</th>
+            <th scope="col">Nom </th>
+            <th scope="col">Marque</th>
+            <th scope="col">Modification</th>
+            <th scope="col">Suppression</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in @Model)
+        {
+            <tr>
+                <td>@item.Id</td>
+                <td>@item.Nom</td>
+                <td>@item.Marque</td>
+                <td>
+                    @*<a class="btn btn-warning" asp-controller="Test" asp-action="Modif" asp-route-id="@item.Id"> Modifier</a>*@
+                    <a class="btn btn-warning" href="/test/modif/@item.Id" > Modifier</a>
+                </td>
+                <td>
+                   <a class="btn btn-danger bouttonSupprimerVoiture"  num-id="@item.Id"> Supprimer</a>
+
+                </td>
+                 <td>
+                   <a class="btn btn-danger bouttonSupprimerVoiture"  href="/Test/Supprimer2/@item.Id"> Supprimer2</a> 
+
+                </td>
+            </tr>
+        }
+  </tbody>
+
+</table>
+
+
+
+@section Scripts
+{
+<script>
+    $(document).ready(
+    function() {
+                  //  alert('ok');
+                    $('.bouttonSupprimerVoiture').click(
+                        function(event){
+                          // alert('click');
+                           var boutonClique = $(event.target);
+                           var idASupprimer =$(boutonClique).attr('num-id');
+                          // alert(idASupprimer);
+                           // Appeler le Server -- 
+                           // une méthode Ajax pour appeler le server 
+                           $.ajax(  {
+                                url:'/test/supprimer',
+                                type: 'post',
+                                data:{
+                                    id:idASupprimer
+                                },
+                                success : function(data)
+                                {
+                                    if (data.Suppression = 'OK')
+                                    {
+                                      //  alert ('supprimé');
+                                      // disparaitre le tr  suivant un fondu vers la tranparence 
+                                      // une fois tranparent , on le supprime du DOM
+                                      $(boutonClique).closest('tr').fadeOut(400,function(){
+                                          $(this).remove();
+                                      });
+                                    }
+                                    else
+                                    {
+                                      alert ('echec supprimé');
+                                    }
+                                }
+                                
+                           }
+                           );
+                        }
+
+                    );
+
+                }
+    );
+
+
+</script>
+
+}
