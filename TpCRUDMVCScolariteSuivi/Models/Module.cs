@@ -2,15 +2,15 @@
 {
     public class Module
     {
-        int Id { get; set; }
+        public int Id { get; set; }
 
-        string Nom { get; set; }
+        public string Nom { get; set; }
 
-        string Logo { get; set; }
+        public string Logo { get; set; }
 
-        string Resume { get; set; }
+        public string Resume { get; set; }
 
-        string info { get; set; }
+        public string info { get; set; }
 
         public ICollection<Parcour>? Parcour { get; set; } = new List<Parcour>();
     }
