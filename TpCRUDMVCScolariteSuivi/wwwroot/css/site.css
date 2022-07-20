@@ -8,11 +8,45 @@ html {
   }
 }
 
+#firstSection {
+    background-image: url("../photos/headBground.jpg");
+    background-size: cover;
+    width: 100vw;
+    height: 60vh;
+    position: relative;
+}
+#firstSection div{
+    color: white;
+    position: absolute;
+    right: 10em;
+    top: 7em;
+    width: 30vw;
+    height:40vh;
+    text-align: right;
+}
+#firstSection div a{
+    position: relative;
+    top: 25px;
+}
+.goldButton {
+    padding: 15px;
+    border: 2px solid #dba313;
+    text-decoration: none;
+    color: white;
+    border-radius: 15px;
+    margin-top: 50px;
+    text-align: left;
+}
+.goldButton:hover{
+    color: white;
+
+} 
 html {
-  position: relative;
-  min-height: 100%;
+    position: relative;
+    min-height: 100%;
 }
 
 body {
   margin-bottom: 60px;
+  background-color: #fffbf1;
 }
