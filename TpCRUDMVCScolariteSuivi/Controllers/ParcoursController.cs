@@ -10,12 +10,17 @@ using TpCRUDMVCScolariteSuivi.Models;
 namespace TpCRUDMVCScolariteSuivi.Controllers
 {
     public class ParcoursController : Controller
+
+
     {
         private readonly ScolariteDbEntities _context;
 
-        public ParcoursController(ScolariteDbEntities context)
+        IWebHostEnvironment _webHostenvironment;
+        public ParcoursController(ScolariteDbEntities context, IWebHostEnvironment webHostenvironment)
         {
-            _context = context;
+            _context = context;           
+            _webHostenvironment = webHostenvironment;
+
         }
 
         // GET: Parcours
@@ -56,11 +61,29 @@ namespace TpCRUDMVCScolariteSuivi.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Id,Nom,Logo,Resume,Infos,ModuleId")] Parcour parcour)
+        public async Task<IActionResult> Create(Parcour parcour, IFormFile Logo)
         {
-            if (ModelState.IsValid)
-            {
-                _context.Add(parcour);
+            // Verifier si la photo est bonne : Taille non null
+                if (Logo.Length > 0)
+                if (ModelState.IsValid)
+                {
+                    // Recuperer le chemin du dossier qui contient les photos
+                    string rootPath = _webHostenvironment.WebRootPath;
+                    string fileName = Path.GetFileName(Logo.FileName) + "_" + Guid.NewGuid() + Path.GetExtension(Logo.FileName);
+                    string path = Path.Combine(rootPath + "/photos/", fileName);
+                    // Copier physiquement le fichier dans les dossier photoImages
+                    // On utilse le fileStream
+
+                    var fileStream = new FileStream(path, FileMode.Create);
+                    // Copie en async
+
+                    await Logo.CopyToAsync(fileStream);
+
+                    fileStream.Close();
+                    parcour.Logo = fileName;
+
+
+                    _context.Add(parcour);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }

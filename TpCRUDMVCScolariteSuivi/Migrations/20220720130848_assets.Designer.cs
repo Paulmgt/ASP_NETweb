@@ -2,6 +2,7 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using TpCRUDMVCScolariteSuivi.Models;
 
@@ -10,9 +11,10 @@ using TpCRUDMVCScolariteSuivi.Models;
 namespace TpCRUDMVCScolariteSuivi.Migrations
 {
     [DbContext(typeof(ScolariteDbEntities))]
-    partial class ScolariteDbEntitiesModelSnapshot : ModelSnapshot
+    [Migration("20220720130848_assets")]
+    partial class assets
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder

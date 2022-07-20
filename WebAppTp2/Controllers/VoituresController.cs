@@ -67,7 +67,7 @@ namespace WebAppTp2.Controllers
             if(Photo.Length > 0)
             if (ModelState.IsValid)
             {
-                    // Recuperer le chemin du dossier qui contient les phoros
+                    // Recuperer le chemin du dossier qui contient les photos
                     string rootPath = _webHostenvironment.WebRootPath;
                     string fileName = Path.GetFileName(Photo.FileName) + "_" + Guid.NewGuid() + Path .GetExtension(Photo.FileName);
                     string path = Path.Combine(rootPath + "/photoVoitures/", fileName);

@@ -5,7 +5,7 @@
      public  int Id { get; set; }
 
      public string Nom { get; set; }
-
+    
      public string Logo { get; set; }
 
      public string Resume { get; set; }
