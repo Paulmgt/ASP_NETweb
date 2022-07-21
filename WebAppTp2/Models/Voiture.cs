@@ -9,10 +9,10 @@
 
         public string? Photo { get; set; }
 
+        public string NumeroTelProp { get; set; }
 
         // Pour simplifier le codage au niveau du Front
         // On ajoute l'Id de la Marque ici
-
         public int MarqueId { get; set; }
 
         public Marque? Marque { get; set; }
