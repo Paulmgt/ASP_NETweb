@@ -1,8 +1,9 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore;
 
 namespace TpCRUDMVCScolariteSuivi.Models
 {
-    public class ScolariteDbEntities : DbContext
+    public class ScolariteDbEntities : IdentityDbContext
     {
 
         public ScolariteDbEntities(DbContextOptions<ScolariteDbEntities> opts) : base(opts)
