@@ -29,7 +29,7 @@
                 </p>
             </div>
         </div>
-        <<div class="cards">
+        <div class="cards">
             <img src="~/photos/JS.png"/>
             <div class="card-text">
                 <h1>Javascript</h1>
@@ -38,6 +38,19 @@
                 </p>
             </div>
         </div>
-    </div>
+        @model IEnumerable<TpCRUDMVCScolariteSuivi.Models.Module>
+    @foreach (var item in Model) {
+         <div class="cards">
+            <img src="~/photos/@Html.DisplayFor(modelItem => item.Logo)"/>
+            <div class="card-text">
+                <h1>@Html.DisplayFor(modelItem => item.Nom)</h1>
+                <p>
+                    @Html.DisplayFor(modelItem => item.Resume)
+                </p>
+                <span font-weight-light> @Html.DisplayFor(modelItem => item.info) </span>
+            </div>
+        </div>
+}
 
+    </div>
 </section>
