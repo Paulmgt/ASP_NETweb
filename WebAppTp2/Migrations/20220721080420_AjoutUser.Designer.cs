@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using WebAppTp2.Models;
 
@@ -11,9 +12,10 @@ using WebAppTp2.Models;
 namespace WebAppTp2.Migrations
 {
     [DbContext(typeof(VoitureDbEntities))]
-    partial class VoitureDbEntitiesModelSnapshot : ModelSnapshot
+    [Migration("20220721080420_AjoutUser")]
+    partial class AjoutUser
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder

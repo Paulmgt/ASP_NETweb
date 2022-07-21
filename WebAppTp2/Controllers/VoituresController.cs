@@ -2,13 +2,17 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
+using Twilio;
+using Twilio.Rest.Api.V2010.Account;
 using WebAppTp2.Models;
 
 namespace WebAppTp2.Controllers
 {
+    [Authorize]  // Soumise à une authorisation
     public class VoituresController : Controller
     {
         private readonly VoitureDbEntities _context;
@@ -23,7 +27,7 @@ namespace WebAppTp2.Controllers
             _webHostenvironment = webHostenvironment;
         }
 
-        // GET: Voitures
+        [AllowAnonymous] // GET: Voitures
         public async Task<IActionResult> Index()
         {
             var voitureDbEntities = _context.Voitures.Include(v => v.Marque);
@@ -49,7 +53,7 @@ namespace WebAppTp2.Controllers
             return View(voiture);
         }
 
-        // GET: Voitures/Create
+        [AllowAnonymous] // GET: Voitures/Create
         public IActionResult Create()
         {
             ViewData["MarqueId"] = new SelectList(_context.Marques, "Id", "Nom");
@@ -85,13 +89,27 @@ namespace WebAppTp2.Controllers
 
                 _context.Add(voiture);
                 await _context.SaveChangesAsync();
-                return RedirectToAction(nameof(Index));
+
+                    // envoyer un message au proprio du vehicule
+                    //string accountSid = "AC83d07df74caafa312ba84ac5a130a5fc";
+                    //string authToken = "";
+
+
+                    //TwilioClient.Init(accountSid, authToken);
+
+                    //var message = MessageResource.Create( 
+                    //    body: "",
+                    //    from: new Twilio.Types.PhoneNumber("+19475002009"),
+                    //    to: new Twilio.Types.PhoneNumber(voiture.NumeroTelProp)
+                    //);
+
+                    return RedirectToAction(nameof(Index));
             }
             ViewData["MarqueId"] = new SelectList(_context.Marques, "Id", "Nom", voiture.MarqueId);
             return View(voiture);
         }
 
-        // GET: Voitures/Edit/5
+        [AllowAnonymous] // GET: Voitures/Edit/5
         public async Task<IActionResult> Edit(int? id)
         {
             if (id == null || _context.Voitures == null)
