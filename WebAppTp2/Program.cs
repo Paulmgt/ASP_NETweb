@@ -27,7 +27,7 @@ builder.Services.AddIdentity<IdentityUser, IdentityRole>()
 builder.Services.AddAuthentication()
     .AddGoogle(optsGoogle =>{
         optsGoogle.ClientId = "1003527487727-gk3k60rps1vni6tjsr8i7rohfptio9u0.apps.googleusercontent.com";
-        optsGoogle.ClientSecret = "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";
+        optsGoogle.ClientSecret = "";
     });
     
 

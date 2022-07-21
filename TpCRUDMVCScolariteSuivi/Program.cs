@@ -17,6 +17,15 @@ builder.Services.AddIdentity<IdentityUser, IdentityRole>()
     .AddDefaultUI()
     .AddEntityFrameworkStores<ScolariteDbEntities>();
 
+
+builder.Services.AddAuthentication()
+    .AddGoogle(optsGoogle => {
+        optsGoogle.ClientId = "rajout de l'id admin";
+        optsGoogle.ClientSecret = "clef secrete de l'admin";
+    });
+
+
+
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
