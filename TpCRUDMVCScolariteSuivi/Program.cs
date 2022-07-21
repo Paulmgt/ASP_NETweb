@@ -1,5 +1,6 @@
 using Microsoft.EntityFrameworkCore;
 using TpCRUDMVCScolariteSuivi.Models;
+using Microsoft.AspNetCore.Identity;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -9,6 +10,19 @@ builder.Services.AddControllersWithViews();
 builder.Services.AddDbContext<ScolariteDbEntities>(opt => opt.UseSqlServer(
     builder.Configuration.GetConnectionString("maChaineDeConnexion")
     ));
+
+
+builder.Services.AddIdentity<IdentityUser, IdentityRole>()
+    .AddDefaultTokenProviders()
+    .AddDefaultUI()
+    .AddEntityFrameworkStores<ScolariteDbEntities>();
+
+
+builder.Services.AddAuthentication()
+    .AddGoogle(optsGoogle => {
+        optsGoogle.ClientId = "rajout de l'id admin";
+        optsGoogle.ClientSecret = "clef secrete de l'admin";
+    });
 
 
 
@@ -27,10 +41,12 @@ app.UseStaticFiles();
 
 app.UseRouting();
 
+app.UseAuthentication();
 app.UseAuthorization();
 
 app.MapControllerRoute(
     name: "default",
     pattern: "{controller=Home}/{action=Index}/{id?}");
 
+app.MapRazorPages();
 app.Run();
