@@ -37,7 +37,7 @@
 
             <div class="form-group">
                 <label asp-for="Module" class="control-label">Choisir Des Modules</label>
-                <select asp-for="ModuleId" class ="form-control" asp-items="ViewBag.ModuleId"></select>
+                <select asp-for="ModuleId" class ="form-control" id="dropDownList-example" asp-items="ViewBag.ModuleId" multiple ></select>
             </div>
             <div class="form-group">
                 <input type="submit" value="Create" class="btn btn-primary" />
@@ -52,4 +52,12 @@
 
 @section Scripts {
     @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+    <script src="~/js/multiselect/jquery.multiselect.js"></script>
+    <script type="text/javascript">  
+    $(function() {  
+        $('#dropDownList-example').multiselect({  
+            includeSelectAllOption: true  
+        });  
+    });  
+</script>
 }
