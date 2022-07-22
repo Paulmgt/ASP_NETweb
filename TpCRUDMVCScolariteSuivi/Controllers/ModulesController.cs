@@ -10,14 +10,16 @@ using TpCRUDMVCScolariteSuivi.Models;
 
 namespace TpCRUDMVCScolariteSuivi.Controllers
 {
-    [Authorize]
+    //[Authorize]
     public class ModulesController : Controller
     {
         private readonly ScolariteDbEntities _context;
 
-        public ModulesController(ScolariteDbEntities context)
+        IWebHostEnvironment _webHostenvironment;
+        public ModulesController(ScolariteDbEntities context, IWebHostEnvironment webHostenvironment)
         {
             _context = context;
+            _webHostenvironment = webHostenvironment;
         }
 
         // GET: Modules
@@ -57,10 +59,25 @@ namespace TpCRUDMVCScolariteSuivi.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Id,Nom,Logo,Resume,info")] Module @module)
+        public async Task<IActionResult> Create(Module @module, IFormFile Logo)
         {
+            if (Logo.Length > 0)
             if (ModelState.IsValid)
             {
+                // Recuperer le chemin du dossier qui contient les photos
+                string rootPath = _webHostenvironment.WebRootPath;
+                string fileName = Path.GetFileName(Logo.FileName) + "_" + Guid.NewGuid() + Path.GetExtension(Logo.FileName);
+                string path = Path.Combine(rootPath + "/photos/", fileName);
+                // Copier physiquement le fichier dans les dossier photoImages
+                // On utilse le fileStream
+                var fileStream = new FileStream(path, FileMode.Create);
+
+                // Copie en async
+                await Logo.CopyToAsync(fileStream);
+                fileStream.Close();
+
+                @module.Logo = fileName;
+
                 _context.Add(@module);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));

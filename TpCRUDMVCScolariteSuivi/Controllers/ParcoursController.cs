@@ -11,16 +11,15 @@ using TpCRUDMVCScolariteSuivi.Models;
 namespace TpCRUDMVCScolariteSuivi.Controllers
 {
 
-    [Authorize]
+    //[Authorize]
+
     public class ParcoursController : Controller
-
-
     {
         private readonly ScolariteDbEntities _context;
 
         IWebHostEnvironment _webHostenvironment;
         public ParcoursController(ScolariteDbEntities context, IWebHostEnvironment webHostenvironment)
-        {
+        { 
             _context = context;           
             _webHostenvironment = webHostenvironment;
 
