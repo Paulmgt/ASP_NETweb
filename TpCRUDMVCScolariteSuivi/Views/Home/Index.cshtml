@@ -2,7 +2,30 @@
     ViewData["Title"] = "Home Page";
 }
 
-<div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
-</div>
+<section id="firstSection">
+    <div>
+        <h1>TP CRUD MVC Scolarité </h1>
+        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat</p>
+        <a class="goldButton" asp-area="" asp-controller="Parcours" asp-action="Index">Nos Parcours</a>
+    </div>
+</section>
+
+<section id="secondSection">
+    <h1 id="module">Nos Modules</h1>
+    <div class="cards-box">
+        @model IEnumerable<TpCRUDMVCScolariteSuivi.Models.Module>
+    @foreach (var item in Model) {
+         <div class="cards">
+            <img src="~/photos/@Html.DisplayFor(modelItem => item.Logo)"/>
+            <div class="card-text">
+                <h1>@Html.DisplayFor(modelItem => item.Nom)</h1>
+                <p>
+                    @Html.DisplayFor(modelItem => item.Resume)
+                </p>
+                <span font-weight-light> @Html.DisplayFor(modelItem => item.info) </span>
+            </div>
+        </div>
+}
+
+    </div>
+</section>

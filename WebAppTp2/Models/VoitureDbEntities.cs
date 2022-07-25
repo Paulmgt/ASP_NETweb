@@ -1,8 +1,9 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore;
 
 namespace WebAppTp2.Models
 {
-    public class VoitureDbEntities : DbContext
+    public class VoitureDbEntities : IdentityDbContext
     {
 
         public VoitureDbEntities(DbContextOptions<VoitureDbEntities> opts) : base(opts)
