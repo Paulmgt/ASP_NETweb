@@ -11,7 +11,7 @@ using TpCRUDMVCScolariteSuivi.Models;
 namespace TpCRUDMVCScolariteSuivi.Controllers
 {
 
-    //[Authorize]
+    [Authorize]
 
     public class ParcoursController : Controller
     {

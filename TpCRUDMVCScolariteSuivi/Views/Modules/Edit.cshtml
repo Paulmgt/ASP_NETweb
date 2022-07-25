@@ -20,7 +20,8 @@
                     </div>
                     <div class="form-group">
                         <label asp-for="Logo" class="control-label"></label>
-                        <input asp-for="Logo" class="form-control input" />
+                        <input asp-for="Logo" onchange="document.getElementById('photos').src = window.URL.createObjectURL(this.files[0])" type="file" class="form-control" class="form-control" />
+                        <img id="photos" class="fileImage"/>
                         <span asp-validation-for="Logo" class="text-danger"></span>
                     </div>
                     <div class="form-group">

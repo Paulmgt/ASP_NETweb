@@ -11,7 +11,7 @@ namespace ConsoleSms
             // and set the environment variables. See http://twil.io/secure
             //string accountSid = Environment.GetEnvironmentVariable("TWILIO_ACCOUNT_SID");
             //string authToken = Environment.GetEnvironmentVariable("TWILIO_AUTH_TOKEN");
-            string accountSid = "AC83d07df74caafa312ba84ac5a130a5fc";
+            string accountSid = "";
             string authToken = "";
 
             string numTel = Console.ReadLine();
@@ -22,10 +22,10 @@ namespace ConsoleSms
             var message = MessageResource.Create(
                 body: msg,
                 from: new Twilio.Types.PhoneNumber("+19475002009"),
-                to: new Twilio.Types.PhoneNumber(numTel)
+                to: new Twilio.Types.PhoneNumber("")
             );
 
-            Console.WriteLine(message.Sid);
+            Console.WriteLine("Message Personalisé à partir de VisualStudio");
         }
     }
     

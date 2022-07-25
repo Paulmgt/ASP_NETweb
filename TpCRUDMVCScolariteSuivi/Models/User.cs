@@ -16,3 +16,4 @@
 
     }
 }
+// insert into[dbo].[AspNetRoles] ([Id],[Name]) values('4855F187-4B2D-415F-90FF-9BAABDF529F6', 'Admin');

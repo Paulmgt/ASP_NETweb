@@ -10,17 +10,22 @@ using TpCRUDMVCScolariteSuivi.Models;
 
 namespace TpCRUDMVCScolariteSuivi.Controllers
 {
-    //[Authorize]
+    [Authorize]  //  Une fois la mise en place des pagesRazor Identity 
+                 // (using Microsoft.AspNetCore.Authorization;) prend en charge les annotation
     public class ModulesController : Controller
     {
         private readonly ScolariteDbEntities _context;
 
-        IWebHostEnvironment _webHostenvironment;
+        IWebHostEnvironment _webHostenvironment;  // mise en place de l'environnement de l'hote pour notre app
         public ModulesController(ScolariteDbEntities context, IWebHostEnvironment webHostenvironment)
         {
             _context = context;
             _webHostenvironment = webHostenvironment;
         }
+
+
+                       // ------ Toute Nos methodes de CRUD  -------///   
+
 
         // GET: Modules
         public async Task<IActionResult> Index()
