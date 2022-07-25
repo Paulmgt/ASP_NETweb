@@ -57,10 +57,12 @@ p {
     border-radius: 15px;
     margin-top: 50px;
     text-align: left;
+    transition: .5s;
 }
 .goldButton:hover{
-    color: white;
-
+    background-color: #dba313;
+    color: #032245;
+    transition: .5s;
 }
 
 #secondSection{
@@ -192,32 +194,42 @@ body {
     width: 40vw;
     padding: 20px;
 }
-.itemsActions{
+.itemsActions {
     display: flex;
     flex-direction: column;
+    padding: 2em;
+    width: 10vw;
+    align-items: center;
+
 }
 .edit {
     background-color: #022a58;
     color: white;
-    margin: 10px;
+    margin: 5px;
     border-radius: 5px;
-    padding: 15px;
+    padding: 0.5em;
+    text-align: center;
+    width: 2em;
 }
 
 .delete {
     background-color: #B70000;
     color: white;
-    margin: 10px;
+    margin: 5px;
     border-radius: 5px;
-    padding: 15px;
+    padding: 0.5em;
+    text-align: center;
+    width: 2em;
 }
 
 .details {
     background-color: #dba313;
     color: white;
-    margin: 10px;
+    margin: 5px;
     border-radius: 5px;
-    padding: 15px;
+    padding: 0.5em;
+    text-align: center;
+    width: 2em;
 }
 .footer {
     background-color: transparent;
@@ -227,14 +239,6 @@ body {
     font-weight: bold;
 }
 
-.login {
-    height: 100vh;
-    width: 100vw;
-    background-image: url("../photos/register.jpg");
-    background-size: cover;
-    background-repeat: no-repeat;
-}
-
 .forms {
     width: 100vw;
     min-height: 100vh;
@@ -242,6 +246,7 @@ body {
     background-image: url("../photos/formBg.jpg");
     background-size: cover;
     background-repeat: no-repeat;
+    transition: .5s;
 }
 .Register {
     width: 100vw;
